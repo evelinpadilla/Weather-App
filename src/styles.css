@@ -1,0 +1,79 @@
+a {
+  text-decoration: none;
+}
+body {
+  background-color: gray;
+}
+
+h1 {
+  color: blue;
+}
+
+h6 {
+  text-align: center;
+}
+img {
+  display: block;
+  margin: 0 auto;
+  width: 55px;
+  height: 55px;
+}
+
+.current-temp-card {
+  position: relative;
+}
+.current-temp-img {
+  width: 150px;
+  height: 125px;
+}
+.days {
+  text-align: center;
+}
+
+.high-temp {
+  color: blue;
+  font-weight: bold;
+}
+.low-temp {
+  color: rgb(65, 65, 236);
+}
+#main-temp {
+  color: blue;
+  font-weight: bolder;
+}
+
+.temps {
+  text-align: center;
+}
+
+#search-button {
+  color: blue;
+  background-color: white;
+  border-color: blue;
+  border-radius: 10px;
+  margin: 10 10 10 15px;
+  padding: 4px;
+}
+#search-button:hover {
+  transition-duration: 10em;
+  color: white;
+  background-color: blue;
+  border-color: blue;
+}
+
+#geo-location-button {
+  color: black;
+  background-color: blue;
+  border-color: blue;
+  border-radius: 10px;
+  margin: 0 0 0 15px;
+  padding: 4px;
+  color: white;
+}
+
+#geo-location-button:hover {
+  transition-duration: 10em;
+  color: blue;
+  background-color: white;
+  border-color: blue;
+}
