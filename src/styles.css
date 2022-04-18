@@ -19,6 +19,10 @@ img {
   height: 55px;
 }
 
+.currentInfo {
+  line-height: 7px;
+}
+
 .current-temp-card {
   position: relative;
 }
@@ -37,28 +41,20 @@ img {
 .low-temp {
   color: rgb(65, 65, 236);
 }
-#main-temp {
-  color: blue;
-  font-weight: bolder;
-}
 
 .temps {
   text-align: center;
 }
 
-#search-button {
-  color: blue;
-  background-color: white;
-  border-color: blue;
-  border-radius: 10px;
-  margin: 10 10 10 15px;
-  padding: 4px;
+#currentCity {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0px;
 }
-#search-button:hover {
-  transition-duration: 10em;
-  color: white;
-  background-color: blue;
-  border-color: blue;
+
+#date {
+  font-size: 16px;
+  color: blue;
 }
 
 #geo-location-button {
@@ -75,5 +71,25 @@ img {
   transition-duration: 10em;
   color: blue;
   background-color: white;
+  border-color: blue;
+}
+
+#main-temp {
+  color: blue;
+  font-weight: bolder;
+}
+
+#search-button {
+  color: blue;
+  background-color: white;
+  border-color: blue;
+  border-radius: 10px;
+  margin: 10 10 10 15px;
+  padding: 4px;
+}
+#search-button:hover {
+  transition-duration: 10em;
+  color: white;
+  background-color: blue;
   border-color: blue;
 }
