@@ -22,7 +22,6 @@ let currentDate = document.querySelector("#date");
 currentDate.innerHTML = `${day} ${hours}:${minutes}`;
 
 function displayCurrentWeather(response) {
-  console.log(response.data);
   let currentCity = document.querySelector("#currentCity");
   let currentDescription = document.querySelector("#currentDescription");
   let currentHumidity = document.querySelector("#currentHumidity");
@@ -35,7 +34,6 @@ function displayCurrentWeather(response) {
   currentDescription.innerHTML = response.data.weather[0].description;
   currentHumidity.innerHTML = response.data.main.humidity;
   currentTemp.innerHTML = Math.round(celsiusTemperature);
-
   currentWind.innerHTML = Math.round(response.data.wind.speed);
 }
 
