@@ -52,9 +52,14 @@ img {
   margin-bottom: 0px;
 }
 
+#currentDescription:first-letter {
+  text-transform: capitalize;
+}
+
 #date {
   font-size: 16px;
   color: blue;
+  margin-bottom: 0px;
 }
 
 #geo-location-button {
