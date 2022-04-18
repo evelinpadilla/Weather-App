@@ -22,12 +22,13 @@ let currentDate = document.querySelector("#date");
 currentDate.innerHTML = `${day} ${hours}:${minutes}`;
 
 function displayCurrentWeather(response) {
+  console.log(response.data);
   let currentCity = document.querySelector("#currentCity");
   let currentDescription = document.querySelector("#currentDescription");
   let currentHumidity = document.querySelector("#currentHumidity");
   let currentTemp = document.querySelector("#main-temp");
   let currentWind = document.querySelector("#currentWind");
-
+  let currentIcon = document.querySelector("#currentIcon");
   celsiusTemperature = response.data.main.temp;
 
   currentCity.innerHTML = response.data.name;
@@ -35,6 +36,11 @@ function displayCurrentWeather(response) {
   currentHumidity.innerHTML = response.data.main.humidity;
   currentTemp.innerHTML = Math.round(celsiusTemperature);
   currentWind.innerHTML = Math.round(response.data.wind.speed);
+  currentIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  currentIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
 function citySearch(event) {
