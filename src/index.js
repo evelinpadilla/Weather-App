@@ -64,8 +64,32 @@ function geoPosition(response) {
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#main-temp");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemp);
+}
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#main-temp");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  temperature.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", citySearch);
 
 let currentLocation = document.querySelector("#geo-location-button");
 currentLocation.addEventListener("click", getLocation);
+
+let fahrenheitLink = document.querySelector("#event-link-f");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#event-link-c");
+celsiusLink.addEventListener("click", showCelsiusTemp);
