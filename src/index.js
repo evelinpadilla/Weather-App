@@ -22,18 +22,21 @@ let currentDate = document.querySelector("#date");
 currentDate.innerHTML = `${day} ${hours}:${minutes}`;
 
 function displayCurrentWeather(response) {
-  let city = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
-  let humidity = response.data.main.humidity;
-  let wind = response.data.wind.speed;
+  console.log(response.data);
   let currentCity = document.querySelector("#currentCity");
-  let currentTemp = document.querySelector("#main-temp");
+  let currentDescription = document.querySelector("#currentDescription");
   let currentHumidity = document.querySelector("#currentHumidity");
+  let currentTemp = document.querySelector("#main-temp");
   let currentWind = document.querySelector("#currentWind");
-  currentCity.innerHTML = `${city}`;
-  currentTemp.innerHTML = `${temperature}`;
-  currentHumidity.innerHTML = `${humidity}`;
-  currentWind.innerHTML = `${wind}`;
+
+  celsiusTemperature = response.data.main.temp;
+
+  currentCity.innerHTML = response.data.name;
+  currentDescription.innerHTML = response.data.weather[0].description;
+  currentHumidity.innerHTML = response.data.main.humidity;
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
+
+  currentWind.innerHTML = Math.round(response.data.wind.speed);
 }
 
 function citySearch(event) {
