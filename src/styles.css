@@ -76,10 +76,13 @@ img {
   text-transform: capitalize;
 }
 
+#lastUpdated {
+  font-size: 16px;
+  margin-bottom: 0px;
+}
 #date {
   font-size: 16px;
   color: blue;
-  margin-bottom: 0px;
 }
 
 #geo-location-button {
