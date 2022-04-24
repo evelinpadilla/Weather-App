@@ -21,10 +21,18 @@ if (minutes < 10) {
 let currentDate = document.querySelector("#date");
 currentDate.innerHTML = `${day} ${hours}:${minutes}`;
 
+function formatDay(timestamps) {
+  let date = new Date(timestamps * 1000);
+  let day = date.getDay();
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+  return days[day];
+}
+
 function getForecast(coordinates) {
   let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayCurrentWeather(response) {
@@ -51,20 +59,26 @@ function displayCurrentWeather(response) {
   getForecast(response.data.coord);
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let futureForecast = document.querySelector("#forecast");
-
   let forecastHTML = `<div class="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-         <div class="days">${day}</div>
-            <img src="images/overcast.svg" alt="Overcast" />
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6)
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+         <div class="days">${formatDay(forecastDay.dt)}</div>
+            <img src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" alt="" />
              <div class="temps">
-               <span class="high-temp" id="day-two-high-temp">9°</span>
-               <span class="low-temp" id="day-two-low-temp">8°</span>
+               <span class="high-temp" id="day-two-high-temp">${Math.round(
+                 forecastDay.temp.max
+               )}°</span>
+               <span class="low-temp" id="day-two-low-temp">${Math.round(
+                 forecastDay.temp.min
+               )}°</span>
              </div>
       </div>`;
   });
