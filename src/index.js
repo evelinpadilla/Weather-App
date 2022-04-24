@@ -45,7 +45,11 @@ function displayCurrentWeather(response) {
 
 function citySearch(event) {
   event.preventDefault();
-  let city = document.querySelector("#search-form-input").value;
+  let city = document.querySelector("#search-form-input");
+  search(city.value);
+}
+
+function search(city) {
   let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayCurrentWeather);
@@ -93,3 +97,5 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 
 let celsiusLink = document.querySelector("#event-link-c");
 celsiusLink.addEventListener("click", showCelsiusTemp);
+
+search("Los Angeles");
