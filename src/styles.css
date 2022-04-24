@@ -2,7 +2,7 @@ a {
   text-decoration: none;
 }
 body {
-  background-color: gray;
+  background-color: rgb(228, 235, 252);
 }
 
 h1 {
@@ -42,6 +42,11 @@ img {
   width: 150px;
   height: 125px;
 }
+
+.currentDayOverview {
+  margin-bottom: 65px;
+}
+
 .days {
   text-align: center;
 }
@@ -56,6 +61,18 @@ img {
 
 .temps {
   text-align: center;
+}
+
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.weather-app-body {
+  padding: 20px;
+  border: 1px solid #aec2db;
+  background-color: white;
+  border-radius: 5px;
 }
 
 #currentCity {
@@ -79,7 +96,7 @@ img {
   background-color: blue;
   border-color: blue;
   border-radius: 10px;
-  margin: 0 0 0 15px;
+
   padding: 4px;
   color: white;
 }
@@ -109,4 +126,7 @@ img {
   color: white;
   background-color: blue;
   border-color: blue;
+}
+#search-form {
+  margin-bottom: 15px;
 }

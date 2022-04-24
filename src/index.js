@@ -43,6 +43,27 @@ function displayCurrentWeather(response) {
   currentIcon.setAttribute("alt", response.data.weather[0].description);
 }
 
+function displayForecast() {
+  let futureForecast = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+         <div class="days">${day}</div>
+            <img src="images/overcast.svg" alt="Overcast" />
+             <div class="temps">
+               <span class="high-temp" id="day-two-high-temp">9°</span>
+               <span class="low-temp" id="day-two-low-temp">8°</span>
+             </div>
+      </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  futureForecast.innerHTML = forecastHTML;
+}
+
 function citySearch(event) {
   event.preventDefault();
   let city = document.querySelector("#search-form-input");
@@ -99,3 +120,4 @@ let celsiusLink = document.querySelector("#event-link-c");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 search("Los Angeles");
+displayForecast();
