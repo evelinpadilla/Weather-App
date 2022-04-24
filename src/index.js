@@ -21,6 +21,12 @@ if (minutes < 10) {
 let currentDate = document.querySelector("#date");
 currentDate.innerHTML = `${day} ${hours}:${minutes}`;
 
+function getForecast(coordinates) {
+  let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl).then(displayForecast);
+}
+
 function displayCurrentWeather(response) {
   console.log(response.data);
   let currentCity = document.querySelector("#currentCity");
@@ -41,6 +47,8 @@ function displayCurrentWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   currentIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function displayForecast() {
@@ -120,4 +128,3 @@ let celsiusLink = document.querySelector("#event-link-c");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 search("Los Angeles");
-displayForecast();
