@@ -31,7 +31,7 @@ function formatDay(timestamps) {
 
 function getForecast(coordinates) {
   let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -43,12 +43,12 @@ function displayCurrentWeather(response) {
   let currentTemp = document.querySelector("#main-temp");
   let currentWind = document.querySelector("#currentWind");
   let currentIcon = document.querySelector("#currentIcon");
-  celsiusTemperature = response.data.main.temp;
+  fahrenheitTemperature = response.data.main.temp;
 
   currentCity.innerHTML = response.data.name;
   currentDescription.innerHTML = response.data.weather[0].description;
   currentHumidity.innerHTML = response.data.main.humidity;
-  currentTemp.innerHTML = Math.round(celsiusTemperature);
+  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
   currentWind.innerHTML = Math.round(response.data.wind.speed);
   currentIcon.setAttribute(
     "src",
@@ -88,7 +88,7 @@ function displayForecast(response) {
 
 function search(city) {
   let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
@@ -102,7 +102,7 @@ function geoPosition(response) {
   let longitude = response.coords.longitude;
   let latitude = response.coords.latitude;
   let apiKey = "3d9eacdba9c9b4454de2da93bb9f2bb5";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
@@ -111,34 +111,10 @@ function getLocation(event) {
   navigator.geolocation.getCurrentPosition(geoPosition);
 }
 
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#main-temp");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(fahrenheitTemp);
-}
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#main-temp");
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", citySearch);
 
 let currentLocation = document.querySelector("#geo-location-button");
 currentLocation.addEventListener("click", getLocation);
-
-let fahrenheitLink = document.querySelector("#event-link-f");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#event-link-c");
-celsiusLink.addEventListener("click", showCelsiusTemp);
 
 search("Los Angeles");
