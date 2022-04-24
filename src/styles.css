@@ -22,15 +22,6 @@ img {
   height: 55px;
 }
 
-.active {
-  color: blue;
-  font-weight: bolder;
-}
-
-.active:hover {
-  cursor: pointer;
-}
-
 .currentInfo {
   line-height: 7px;
 }
